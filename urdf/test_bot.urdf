@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!-- created with Phobos 1.0.1 "Capricious Choutengan" -->
+  <robot name="test_bot">
+
+    <link name="back_caster_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.4"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="back_caster">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://blender_urdf_gen_tutorial/meshes/dae/Sphere.dae" scale="0.0577 0.0577 0.0577"/>
+        </geometry>
+      </visual>
+      <collision name="Sphere.001">
+        <origin xyz="0 0 -0.004" rpy="0 0 0"/>
+        <geometry>
+          <sphere radius="0.05733"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="base_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.4"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="base_body">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="2.0 1.16538 0.56767"/>
+        </geometry>
+        <material name="Material.003"/>
+      </visual>
+      <collision name="Cube">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="2.0 1.16538 0.56767"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="front_caster_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.4"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="front_caster">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://blender_urdf_gen_tutorial/meshes/dae/Sphere.dae" scale="0.0577 0.0577 0.0577"/>
+        </geometry>
+        <material name="Material.004"/>
+      </visual>
+      <collision name="Sphere">
+        <origin xyz="0 0 0.00113" rpy="0 0 0"/>
+        <geometry>
+          <sphere radius="0.05733"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="left_tyre_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.4"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="tyre_left">
+        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+        <geometry>
+          <cylinder radius="0.36743" length="0.21095"/>
+        </geometry>
+        <material name="Material.004"/>
+      </visual>
+      <collision name="Cylinder.001">
+        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+        <geometry>
+          <cylinder radius="0.36743" length="0.21095"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="right_tyre_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.4"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="tyre_right">
+        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+        <geometry>
+          <cylinder radius="0.36743" length="0.21095"/>
+        </geometry>
+        <material name="Material.004"/>
+      </visual>
+      <collision name="Cylinder">
+        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+        <geometry>
+          <cylinder radius="0.36743" length="0.21095"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="back_caster_joint" type="fixed">
+      <origin xyz="-0.93037 0 -0.28006" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="back_caster_link"/>
+    </joint>
+
+    <joint name="front_caster_joint" type="fixed">
+      <origin xyz="0.93274 0 -0.28006" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="front_caster_link"/>
+    </joint>
+
+    <joint name="left_tyre_joint" type="continuous">
+      <origin xyz="0 0.70626 0" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="left_tyre_link"/>
+      <axis xyz="0 1.0 0"/>
+      <limit effort="50.0" velocity="3.141"/>
+    </joint>
+
+    <joint name="right_tyre_joint" type="continuous">
+      <origin xyz="0 -0.70591 0" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="right_tyre_link"/>
+      <axis xyz="0 1.0 0"/>
+      <limit effort="50.0" velocity="3.141"/>
+    </joint>
+
+    <material name="Material.003">
+      <color rgba="0.8 0.8 0.8 1.0"/>
+    </material>
+
+    <material name="Material.004">
+      <color rgba="0.8 0.8 0.8 1.0"/>
+    </material>
+
+  </robot>

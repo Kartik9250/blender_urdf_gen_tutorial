@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<robot name="test_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<xacro:include filename="$(find blender_urdf_gen_tutorial)/urdf/test_bot.urdf" />
+<xacro:include filename="$(find blender_urdf_gen_tutorial)/gazebo_xacro/test_bot_movables.gazebo.xacro" />
+
+</robot>

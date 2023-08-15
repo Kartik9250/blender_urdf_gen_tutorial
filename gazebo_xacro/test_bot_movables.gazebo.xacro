@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <gazebo>
+      <plugin filename="libgazebo_ros_diff_drive.so" name="back_diff">
+        <!-- Set control loop update rate -->
+        <updateRate>100</updateRate>
+          
+        <!-- Name of left joint, defaults to `left_joint` -->
+        <leftJoint>left_tyre_joint</leftJoint>
+
+        <!-- Name of right joint, defaults to `right_joint` -->
+        <rightJoint>right_tyre_joint</rightJoint>
+
+        <publish_rate>10</publish_rate>
+
+        <!-- The distance from the center of one wheel to the other, in meters, defaults to 0.34 m -->
+        <wheelSeparation>0.409</wheelSeparation>
+
+        <!-- Diameter of the wheels, in meters, defaults to 0.15 m -->
+        <wheelDiameter>0.105</wheelDiameter>
+
+        <!-- Topics -->
+        <commandTopic>cmd_vel</commandTopic>
+        <odometryTopic>odom</odometryTopic>
+
+        <!-- Set if odom required -->
+        <publishOdom>true</publishOdom>
+        <publishOdomTF>true</publishOdomTF>
+
+        <publishTF>true</publishTF>
+
+        <!-- Frame IDs -->
+        <odometryFrame>odom</odometryFrame>
+        <robotBaseFrame>base_link</robotBaseFrame>
+
+        <odometrySource>world</odometrySource>
+
+        <!-- Set odom covariance -->
+        <covariance_x>0.0001</covariance_x>
+        <covariance_y>0.0001</covariance_y>
+        <covariance_z>0.0001</covariance_z>
+      </plugin>
+    </gazebo>
+
+    <transmission name="right_tyre_joint_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_tyre_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_tyre_joint_actuator">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="left_tyre_joint_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="left_tyre_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="left_tyre_joint_actuator">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+</robot>
